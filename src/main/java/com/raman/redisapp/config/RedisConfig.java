@@ -19,13 +19,13 @@ public class RedisConfig {
     @Bean("redis_template")
     public RedisTemplate<Integer, Object> redisTemplate() {
         RedisTemplate<Integer, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(getJedisConnectionFactory());
+        redisTemplate.setConnectionFactory(connectionFactory());
         return redisTemplate;
     }
 
-    private JedisConnectionFactory getJedisConnectionFactory() {
+    @Bean
+    public JedisConnectionFactory connectionFactory() {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(redisHost, redisPort);
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
-        return jedisConnectionFactory;
+        return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
 }
