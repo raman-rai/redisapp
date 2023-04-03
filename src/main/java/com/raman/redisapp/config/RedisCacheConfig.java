@@ -8,7 +8,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
-public class RedisConfig {
+public class RedisCacheConfig {
 
     @Value("${redis.host}")
     private String redisHost;
@@ -17,8 +17,8 @@ public class RedisConfig {
     private int redisPort;
 
     @Bean("redis_template")
-    public RedisTemplate<Integer, Object> redisTemplate() {
-        RedisTemplate<Integer, Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, String> redisTemplate() {
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory());
         return redisTemplate;
     }
