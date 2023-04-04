@@ -17,12 +17,12 @@ public class UserController {
         return userService.getUserContact(userId);
     }
 
-    @PostMapping
+    @PostMapping(value = "/phone")
     public void updateUserContact(@RequestBody User user) {
         userService.updateUserContact(user.getUserId(), user.getPhone());
     }
 
-    @PostMapping
+    @PostMapping(value = "/phone/TTL")
     public void updateUserContactWithTTL(@RequestBody User user) {
         userService.updateUserContactWithTTL(user.getUserId(), user.getPhone());
     }
